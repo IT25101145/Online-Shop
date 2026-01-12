@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Product – MR SHOP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <h1 class="logo">MR SHOP</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">Cart <span id="cart-count">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="container product-page" id="product-detail"></section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="year"></span> MR SHOP – All rights reserved.</p>
+      <div class="social">
+        <a href="#">FB</a>
+        <a href="#">IG</a>
+        <a href="#">TT</a>
+      </div>
+    </div>
+  </footer>
+  <a href="https://wa.me/94771234567" class="whatsapp" target="_blank">💬</a>
+
+  <script src="js/main.js"></script>
+  <script>
+    const id = new URLSearchParams(location.search).get('id');
+    const prod = products.find(p => p.id == id);
+    document.getElementById('product-detail').innerHTML = `
+      <div class="left">
+        <img src="${prod.img}" alt="">
+      </div>
+      <div class="right">
+        <h2>${prod.name}</h2>
+        <p>${prod.desc}</p>
+        <strong>Rs ${prod.price}</strong><br><br>
+        <button class="btn" onclick="addToCart(${prod.id})">Add to Cart</button>
+      </div>`;
+  </script>
+</body>
+</html>

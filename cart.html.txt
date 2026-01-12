@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Cart – MR SHOP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <h1 class="logo">MR SHOP</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">Cart <span id="cart-count">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="container cart">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <p>Total: Rs <span id="total">0</span></p>
+    <button class="btn" onclick="alert('Cash on Delivery confirmed!')">Checkout (COD)</button>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="year"></span> MR SHOP – All rights reserved.</p>
+      <div class="social">
+        <a href="#">FB</a>
+        <a href="#">IG</a>
+        <a href="#">TT</a>
+      </div>
+    </div>
+  </footer>
+  <a href="https://wa.me/94771234567" class="whatsapp" target="_blank">💬</a>
+
+  <script src="js/main.js"></script>
+  <script>
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      const box = document.getElementById('cart-items');
+      box.innerHTML = '';
+      let total = 0;
+      cart.forEach(p => {
+        total += p.price * p.qty;
+        box.innerHTML += `<div class="cart-item">${p.name} x${p.qty} - Rs ${p.price * p.qty}</div>`;
+      });
+      document.getElementById('total').textContent = total;
+      document.getElementById('cart-count').textContent = cart.reduce((a, b) => a + b.qty, 0);
+    }
+    renderCart();
+  </script>
+</body>
+</html>
